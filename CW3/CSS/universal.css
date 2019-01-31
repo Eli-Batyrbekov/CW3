@@ -1,0 +1,186 @@
+/*links styling*/
+a:visited {
+  color: black;
+}
+
+a:link {
+  color: black
+}
+
+a:hover {
+  color: #654321;
+}
+
+a:active {
+  color: #ffa500;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+/* links styling https://www.w3schools.com/cssref/sel_hover.asp*/
+/*links styling**/
+/*Layout*/
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+/*reset from lecture notes*/
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: Arial, Verdana, sans-serif;
+}
+
+/*header*/
+#header {
+  width: 100%;
+  height: 5em;
+}
+
+#header #logo-and-header-text img {
+  height: 100%;
+  width: 80px;
+  z-index: -1;
+}
+
+#header #logo-and-header-text h1 {
+  position: relative;
+  top: -4em;
+  left: 5px;
+}
+
+#header #logo-and-header-text h1 {
+  width: 5.5em;
+  /*rotate*/
+  /* Safari */
+  -webkit-transform: rotate(-45deg);
+  /* Firefox */
+  -moz-transform: rotate(-45deg);
+  /* IE */
+  -ms-transform: rotate(-45deg);
+  /* Opera */
+  -o-transform: rotate(-45deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3.5);
+  /*rotate.*/
+}
+
+#header h1 {
+  font-size: 15px;
+}
+
+#header #logo-and-header-text h1 {
+  color: white;
+  text-shadow: 2px 2px 2px rgb(255, 222, 173), 2px 2px 4px rgb(0, 0, 0)
+}
+
+#header {
+  border: solid rgb(255, 228, 196);
+  background-color: rgb(255, 222, 173);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+/*header.*/
+/*navigation*/
+#navigation-menu {
+  position: fixed;
+  left: 3px;
+  top: 7em;
+}
+
+#navigation-menu a {
+  padding: 5px;
+  display: none;
+}
+
+#navigation-menu:hover a {
+  display: inline-block;
+}
+
+#navigation-menu {
+  background-color: rgba(255, 222, 173, 1);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+  border: solid rgb(255, 228, 196);
+}
+
+/*navigation.*/
+/*page-content*/
+#page-content {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-self: center;
+}
+
+/*footer*/
+#footer-links {
+  margin: auto;
+  text-align: center;
+}
+
+footer {
+  width: 100%;
+  height: 5em;
+  border: solid rgb(255, 228, 196);
+  background-image: linear-gradient(white, rgb(255, 222, 173));
+  margin-top: 30px;
+  margin-bottom: 5px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px -5px 30px rgb(0, 0, 0);
+  clear: both;
+}
+
+.animation img {
+  height: 100px;
+  width: 100px;
+  float: right;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+  border: rgb(222, 184, 135) 5px ridge;
+  margin-top: 5px;
+  animation-name: haha;
+  animation-duration: 4s;
+}
+
+@keyframes haha {
+  0% {
+    opacity: 0.0;
+  }
+
+  25% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#footer-links a {
+  margin: 3px;
+}
+
+/*footer*/
+/*background*/
+body {
+  background-image: url("./../images/backPixabay.jpg");
+  background-repeat: repeat;
+}
+
+/*background*/

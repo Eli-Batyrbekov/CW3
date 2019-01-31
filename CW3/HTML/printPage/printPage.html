@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="cake, order, buy, Buccellator">
+  <meta name="description" content="order a cake here">
+  <title>Print Page</title>
+  <link rel="stylesheet" type="text/css" href="../../css/universal.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../css/print.css" media="screen">
+  <link rel="stylesheet" href="../../css/printing.css" media="print">
+  <script src="../../JS/cakemenu.js"></script>
+  <script type="text/javascript">
+    window.onload = init;
+    //use database cakemenu.js
+    var MenuArray = initMenu();
+
+    function init() {
+      //call the function fillVal for filling form
+      fillval();
+      //call batle filling thing
+      tblFill();
+      //
+      document.getElementById("clearInvBtn").addEventListener("click", ClearInvc);
+    }
+    //filling form
+    function getVar(name) {
+      var NVquery = window.location.search.substring(1);
+      var vars = NVquery.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == name) {
+          return pair[1];
+        }
+      }
+      return null;
+    }
+
+    function fillval() {
+      if (window.location.search.substring(1).length) {
+        document.getElementById("telephone-number").value = getVar("telephone-number");
+        document.querySelector("#pick-up-date").value = unescape(getVar("pick-up-date"));
+        dlvOpt = document.querySelectorAll("input[type='radio']");
+        switch (getVar("delivery")) {
+          case "delivery":
+            dlvOpt[0].checked = true;
+            break;
+          case "pick-up":
+            dlvOpt[1].checked = true;
+            break;
+        }
+      } else {
+
+      }
+    }
+    //filling form End
+
+    // Table Filling
+    function tblFill() {
+      var stringiSendObj = window.localStorage.getItem('tbodyData');
+      var sendObj = JSON.parse(stringiSendObj);
+      var cakeQty = sendObj.cakeQty;
+      var cakeName = sendObj.cakeNames;
+      var tBodyDiv = document.getElementById("ordered-item-and-price");
+      for (var i = 0; i < cakeQty.length; i++) {
+        //create a tr
+        var myTr = document.createElement("tr");
+        //create td with name
+        var myTdName = document.createElement("td");
+        var NameOfCake = document.createTextNode(cakeName[i]);
+        //create td with Qty
+        var myTdQty = document.createElement("td");
+        var QtyOfCake = document.createTextNode(cakeQty[i]);
+        //calc price
+        var priceKot;
+        for (var item = 0; item < MenuArray.length; item++) {
+          if (MenuArray[item].description.length == NameOfCake.length) {
+            let x = MenuArray[item].price;
+            let y = cakeQty[i];
+            let z = Number(y);
+            priceKot = x * z;
+            // create td with price
+            var myTdPrice = document.createElement("td");
+            var PriceOfCake = document.createTextNode(priceKot);
+          }
+        }
+
+        //append name td
+        myTdName.appendChild(NameOfCake);
+        myTr.appendChild(myTdName);
+        //append Qty td
+        myTdQty.appendChild(QtyOfCake);
+        myTr.appendChild(myTdQty);
+        // append price td
+        myTdPrice.appendChild(PriceOfCake);
+        myTr.appendChild(myTdPrice);
+        //append Tr
+        tBodyDiv.appendChild(myTr);
+      }
+      totQty();
+    }
+    // End of Table Filling
+
+    //clear invoice
+    function ClearInvc() {
+      localStorage.clear();
+      window.location = "../homePage/homePage.html";
+    }
+    //Finding total Qty
+    function totQty() {
+      var tBody = document.getElementById("ordered-item-and-price");
+      var tFoot = document.getElementById("total-foot");
+      for (var item = 1; item < 3; item++) {
+
+        var totalCnt = 0;
+        for (var i = 0; i < tBody.rows.length; i++) {
+          var tBodyTr = tBody.rows[i];
+          var tBodyTd = tBodyTr.cells[item];
+          var tBodyTdNode = tBodyTd.innerHTML;
+          console.log(tBodyTdNode);
+          var tdNumValue = Number(tBodyTdNode);
+          console.log(tBodyTdNode);
+          totalCnt = totalCnt + tdNumValue;
+          tFoot.rows[0].cells[item].innerHTML = totalCnt;
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!--Header-->
+  <header class="header" id="header">
+
+    <div id="logo-and-header-text">
+
+      <img src="../../images/logo.png" alt="logo of city's cake" title="logo of city's cake">
+
+      <h1 class="header-text">city's cake</h1>
+
+    </div>
+
+  </header>
+  <!--Header-->
+
+  <!--Navigation-menu-->
+  <div class="navigation-menu" id="navigation-menu">
+    <img src="../../images/viewlist.png" alt="navigation menu" title="navigation menu">
+
+    <a href="../homePage/homePage.html" tabindex="1">Home</a>
+    <a href="../orderPage/orderPage.html" tabindex="2">Order</a>
+    <a href="../designPage/designPage.html" tabindex="3">About Us</a>
+    <a href="#" onclick="return false" tabindex="4">Terms of Use</a>
+
+  </div>
+  <!--main container-->
+  <div id="page-content">
+
+    <!--Invoce Block-->
+    <div class="invoce-div">
+      <form class="invoice-form" id="invoice-form" method="post">
+
+        <fieldset id="invoice-form-main-fieldset">
+          <legend class="form-legend-align-center">Invoice</legend>
+          <label for="telephone-number" accesskey="n">Tel No.
+            <input type="text" name="telephone-number" class="textbox-align-right" id="telephone-number" tabindex="5" value="12345678" disabled>
+          </label>
+          <br>
+          <label for="pick-up-date" accesskey="p">Pick Up Date
+            <input type="text" name="pick-up-date" class="textbox-align-right" id="pick-up-date" tabindex="6" value="15/5/2024" disabled>
+          </label>
+          <div class="radio">
+            <input type="radio" name="delivery" id="delivery" value="delivery" tabindex="7" disabled>
+            <label for="delivery" accesskey="d">Delivery</label>
+          </div>
+
+          <input type="radio" name="delivery" id="pick-up" value="pick-up" tabindex="8" checked="checked" disabled>
+          <label for="pick-up" accesskey="u" class="second">Pick Up</label>
+
+        </fieldset>
+      </form>
+      <table id="tipoTable">
+        <thead>
+          <tr>
+            <th>Cake Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+
+        <tbody id="ordered-item-and-price">
+
+        </tbody>
+
+        <tfoot id="total-foot">
+          <tr>
+            <td>Total</td>
+            <td id="order-item-quantity-total">0</td>
+            <td id="order-item-price-total">0</td>
+          </tr>
+        </tfoot>
+      </table>
+      <button id="clearInvBtn" type="button" name="button">Clear Invoice</button>
+    </div>
+  </div>
+  <!--main container-->
+
+  <!--footer-->
+  <footer>
+    <hr>
+    <div class="references-text" id="references-text">
+      <p>&copy; CityU 2017 sources of images and text from Wikipedia
+        &amp; courtesy of all-free-download.com &amp; Pixaby.com</p>
+    </div>
+    <br />
+    <div class="footer-links" id="footer-links">
+      <a href="../homePage/homePage.html" tabindex="9">Home</a>
+      <a href="../orderPage/orderPage.html" tabindex="10">Order</a>
+      <a href="../designPage/designPage.html" tabindex="11">About Us</a>
+      <a href="#" onclick="return false" tabindex="12">Terms of Use</a>
+    </div>
+    <hr>
+  </footer>
+</body>
+
+</html>

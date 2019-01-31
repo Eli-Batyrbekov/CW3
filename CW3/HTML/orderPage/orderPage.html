@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="cake, order, buy, Buccellator">
+  <meta name="description" content="order a cake here">
+  <link rel="stylesheet" type="text/css" href="../../css/universal.css">
+  <link rel="stylesheet" type="text/css" href="../../css/order.css">
+  <title>Order Page</title>
+  <script src="../../JS/cakemenu.js"></script>
+  <script type="text/javascript">
+    //filling form
+    function getVar(name) {
+      var NVquery = window.location.search.substring(1);
+      var vars = NVquery.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == name) {
+          return pair[1];
+        }
+      }
+      return null;
+    }
+
+    function fillval() {
+      if (window.location.search.substring(1).length) {
+        document.getElementById("telephone-number").value = getVar("telephone-number");
+        document.querySelector("#pick-up-date").value = unescape(getVar("pick-up-date"));
+        dlvOpt = document.querySelectorAll("input[type='radio']");
+        switch (getVar("delivery")) {
+          case "delivery":
+            dlvOpt[0].checked = true;
+            break;
+          case "pick-up":
+            dlvOpt[1].checked = true;
+            break;
+        }
+      } else {
+
+      }
+    }
+    //filling form End
+
+    window.onload = init;
+
+    function init() {
+      //Adding images from database
+      var MenuArray = initMenu();
+      var imgDiv = document.getElementById("menu-block");
+
+      for (var i = 0; i < MenuArray.length; i++) {
+        var im = document.createElement("img");
+        im.src = MenuArray[i].imagefile;
+        im.alt = MenuArray[i].description;
+        im.title = MenuArray[i].description;
+        im.onclick = cakeChoice;
+        imgDiv.appendChild(im);
+      }
+      //Adding images from database End
+
+      //call the function fillVal for filling form
+      fillval();
+      //change title of table of ordered itemsTable 1st
+      tblHdrChg();
+      //add clickability to the page
+
+    }
+    //change title of table of ordered itemsTable
+    function tblHdrChg() {
+      var telNo = document.getElementById("telephone-number").value;
+      var formL = document.getElementById("form-legend-align-center");
+      formL.innerHTML = "Order No. " + telNo;
+
+    }
+
+    //Choosing a Cake
+    var cT = 0;
+
+    function cakeChoice() {
+      temp = prompt("Please specify the quantity of cakes");
+      if (!isNaN(temp) && temp > 0) {
+        var trCont = document.querySelector("#ordered-cakes-name-and-quantity");
+        var addTr = document.createElement("TR");
+        var addInptName = document.createElement("TD");
+        var addInptNum = document.createElement("TD");
+        var totalCakes = document.getElementById('order-item-quantity-total');
+        cT = cT + Number(temp);
+        // addInptNum.type = "text";
+        // addInptName.type = "text";
+        addInptNum.innerHTML = temp;
+        addInptName.innerHTML = this.title;
+        trCont.appendChild(addTr);
+        addTr.appendChild(addInptName);
+        addTr.appendChild(addInptNum);
+        totalCakes.innerHTML = cT;
+        return cT;
+      } else if (temp == null || temp.trim() == "") {
+        alert("Dear Sir/Madam, please type an appropriate number (i.e. 1, 2, 3...) ")
+      } else if (isNaN(temp)) {
+        alert("Dear Sir/Madam, please type an appropriate number (i.e. 1, 2, 3...) ");
+      }
+    }
+    //check before submitting
+    function tblDataTrnf() {
+      var telNo = document.getElementById('telephone-number').value;
+      var PUDate = document.getElementById("pick-up-date").value;
+      var ulCont = document.querySelector("#errorMsgList");
+      var PUDateParsed = parseInt(PUDate);
+      var telNoParsed = parseInt(telNo);
+      //check telephonenumber
+
+      //There is no need to check if the Telephone Number is a "Number" because imput type of this field is "number"
+
+      if (telNo.trim() == "") {
+        let litem = document.createElement("li");
+        let msgItem = document.createTextNode("Please do not leave 'Telephone No.' box blank")
+        litem.appendChild(msgItem);
+        ulCont.appendChild(litem);
+      }
+      // return false;
+      if (isNaN(telNoParsed)) {
+        let litem = document.createElement("li");
+        let msgItem = document.createTextNode('Value of "Telephone No." must be a number');
+        litem.appendChild(msgItem);
+        ulCont.appendChild(litem);
+
+        // return false;
+      }
+
+      if (PUDate.trim() == "") {
+        let litem = document.createElement("li");
+        let msgItem = document.createTextNode("Please do not leave 'Pick Up Date' blank")
+        litem.appendChild(msgItem);
+        ulCont.appendChild(litem);
+
+      }
+      if (isNaN(PUDateParsed)) {
+        let litem = document.createElement("li");
+        let msgItem = document.createTextNode('Value of "Pick Up Date" must be a number');
+        litem.appendChild(msgItem);
+        ulCont.appendChild(litem);
+
+        // return false;
+      }
+
+      // sending to a local storage
+      var trs = document.querySelectorAll("#ordered-cakes-name-and-quantity tr")
+      var cakeName = [];
+      var cakeQty = [];
+      for (var i = 0; i < trs.length; i++) {
+        cakeQty.push(trs[i].cells[1].innerHTML);
+        cakeName.push(trs[i].cells[0].innerHTML);
+      }
+      var sendObj = {
+        "cakeNames": cakeName,
+        "cakeQty": cakeQty,
+      };
+      var stringiSendObj = JSON.stringify(sendObj);
+      window.localStorage.setItem('tbodyData', stringiSendObj);
+
+      // END sending to a local storage
+
+      if (ulCont.childElementCount == 0) {
+        //submit forms
+        document.getElementById("order-form").submit();
+      }
+      document.getElementById("errorMsgDiv").style.display = "block";
+
+      //blur the page leave the Block
+      var contDiv = document.getElementById("mainContainer");
+      contDiv.style.opacity = "0.5";
+      contDiv.style.filter = 'alpha(opacity=50)'; //for bad browsers
+    }
+    //hide the errror block and make page great again!
+    function hideErrBlock() {
+      var errBox = document.getElementById("errorMsgDiv");
+      errBox.style.display = "none";
+      document.getElementById("errorMsgList").innerHTML = "";
+      var contDiv = document.getElementById("mainContainer");
+      contDiv.style.opacity = "1.0";
+      contDiv.style.filter = 'alpha(opacity=100)'; //for bad browsers
+    }
+  </script>
+</head>
+
+<body>
+  <!--main container-->
+  <div id="mainContainer" onclick="hideErrBlock()">
+
+    <!--Header-->
+    <header class="header" id="header">
+
+      <div id="logo-and-header-text">
+
+        <img src="../../images/logo.png" alt="logo of city's cake" title="logo of city's cake">
+
+        <h1 class="header-text">city's cake</h1>
+
+      </div>
+
+    </header>
+    <!--Header-->
+
+    <!--Navigation-menu-->
+    <div class="navigation-menu" id="navigation-menu">
+      <img src="../../images/viewlist.png" alt="navigation menu" title="navigation menu">
+
+      <a href="../homePage/homePage.html" tabindex="1">Home</a>
+      <a href="../orderPage/orderPage.html" tabindex="2">Order</a>
+      <a href="../designPage/designPage.html" tabindex="3">About Us</a>
+      <a href="#" onclick="return false" tabindex="4">Terms of Use</a>
+
+    </div>
+
+    <div id="page-content">
+
+
+      <h1>Menu of Edible Art</h1>
+
+      <!--Menu Block-->
+      <div class="menu-block" id="menu-block">
+
+      </div>
+      <!--Ordered Items Block-->
+
+      <div class="ordered-items-block" id="ordered-items-block">
+        <form action="../printPage/printPage.html" id="order-form-1st" method="get">
+          <fieldset>
+            <legend id="form-legend-align-center">Order No. 12345678</legend>
+            <table id="ordered-itemsTable">
+              <thead>
+                <tr>
+                  <th>Cake Name</th>
+                  <th>Qty</th>
+                </tr>
+              </thead>
+
+              <tbody id="ordered-cakes-name-and-quantity">
+
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td id="order-item-total">Total</td>
+                  <td id="order-item-quantity-total">0</td>
+                </tr>
+              </tfoot>
+            </table>
+            <input type="button" onclick="event.stopPropagation(); tblDataTrnf();" id="submit-print" tabindex="10" accesskey="s" value="Print Invoice">
+
+
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+    <!--main container-->
+
+    <!--Order Information-->
+    <div class="forms" id="order-information-form">
+
+      <form class="order-form" id="order-form" action="../printPage/printPage.html" method="get">
+
+        <fieldset>
+          <legend class="order-form-legend" id="order-form-legend">Order Information</legend>
+
+          <p>
+            <label for="telephone-number" accesskey="n">Order (Tel.) No.</label>
+            <input type="number" name="telephone-number" id="telephone-number" tabindex="5" value="12345678" onchange="tblHdrChg();">
+            <label for="pick-up-date" accesskey="p">Pick Up Date</label>
+            <input type="text" name="pick-up-date" class="pick-up-date" id="pick-up-date" tabindex="6" value="15/5/2024">
+            <br />
+            <input type="radio" name="delivery" id="delivery" value="delivery" tabindex="7">
+            <label for="delivery" accesskey="d">Delivery</label>
+            <input type="radio" name="delivery" id="pick-up" value="pick-up" tabindex="8" checked="checked">
+            <label for="pick-up" accesskey="u" class="second">Pick Up</label>
+          </p>
+          <!--not sure what to do with the submit button TT-->
+          <!-- <p> -->
+          <!-- <input type="submit" style="display: none;" id="submit" name="submit" value="Submit"> -->
+          <!-- </p> -->
+
+        </fieldset>
+      </form>
+
+    </div>
+
+    <!--footer-->
+    <footer>
+      <hr>
+      <div class="references-text" id="references-text">
+        <p>&copy; CityU 2017 sources of images and text from Wikipedia
+          &amp; courtesy of all-free-download.com &amp; Pixaby.com</p>
+      </div>
+      <br />
+      <div class="footer-links" id="footer-links">
+        <a href="../homePage/homePage.html" tabindex="11">Home</a>
+        <a href="../orderPage/orderPage.html" tabindex="12">Order</a>
+        <a href="../designPage/designPage.html" tabindex="13">About Us</a>
+        <a href="#" onclick="return false" tabindex="14">Terms of Use</a>
+      </div>
+      <hr>
+    </footer>
+
+  </div>
+
+  <!--error message div -->
+  <div id="errorMsgDiv">
+    <ul id="errorMsgList">
+
+    </ul>
+  </div>
+
+</body>
+
+</html>

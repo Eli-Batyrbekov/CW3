@@ -1,0 +1,190 @@
+      /*https://stackoverflow.com/questions/3462298/select-every-nth-element-in-css*/
+      #menu-block img {
+        width: 28%;
+        height: 15em;
+        float: left;
+        margin: 1%;
+        border: 10px rgb(222, 184, 135) ridge;
+        box-shadow: 5px 5px 30px rgb(0, 0, 0);
+      }
+
+      #page-content h1 {
+        align-self: center;
+        text-align: center;
+        font-size: 2em;
+        text-shadow: 3px 3px 3px grey;
+        background-color: rgba(255, 222, 173, 1);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+        border: solid rgb(180, 140, 110);
+        border-radius: 30px;
+        margin-top: 30px
+      }
+
+      #menu-block {
+        position: static;
+        margin-top: 30px;
+      }
+
+      #menu-block img:nth-child(3n+1) {
+        clear: left;
+      }
+
+      #ordered-items-block {
+        clear: both;
+        margin: auto;
+        margin-top: 600px;
+        width: 493px;
+        border: rgb(222, 184, 135) 5px ridge;
+        background-color: rgb(255, 255, 224);
+        font-size: 120%;
+        box-shadow: 5px 5px 30px rgb(0, 0, 0);
+      }
+
+      #ordered-items-block legend {
+        text-decoration: underline;
+        background-color: white;
+        border: 1px solid #dcdcdc;
+        border-radius: 0px 0px 10px 10px;
+        padding: 10px 20px;
+        align-self: center;
+        margin: auto;
+        text-align: center;
+      }
+
+      #ordered-items-block td, th {
+        background-color: rgb(255, 255, 224);
+        font-size: 100%;
+        overflow: hidden;
+        margin-bottom: 10px;
+        border: grey 1px solid;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      #ordered-itemsTable {
+        width: 490px;
+      }
+
+      #ordered-items-block input:focus {
+        background-color: rgb(249, 214, 226);
+        border-color: rgb(255, 250, 205);
+      }
+
+      #submit-print {
+        color: #000000;
+        text-shadow: 0px 1px 1px #ffffff;
+        border-bottom: 2px solid #b2b2b2;
+        background-color: rgb(255, 222, 173);
+        padding: 5px;
+        display: block;
+        align-self: center;
+        margin: auto;
+      }
+
+      #submit-print:hover {
+        color: #000000;
+        background-color: rgb(255, 240, 245);
+      }
+
+      /*form*/
+      #order-information-form {
+        margin: auto;
+        margin-top: 15px;
+        width: 400px;
+        border: rgb(222, 184, 135) 5px ridge;
+        background-color: rgb(255, 255, 224);
+        font-size: 120%;
+        box-shadow: 5px 5px 30px rgb(0, 0, 0);
+      }
+
+      #order-form input {
+        font-size: 120%;
+        overflow: hidden;
+        display: block;
+        margin-bottom: 10px;
+        border: grey 1px solid;
+        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        margin-top: 5px;
+      }
+
+      .form-legend-align-center {
+        text-decoration: underline;
+        background-color: white;
+        border: 1px solid #dcdcdc;
+        border-radius: 0px 0px 10px 10px;
+        padding: 10px 20px;
+        align-self: center;
+      }
+
+      #order-form input:focus {
+        background-color: rgb(255, 240, 245);
+        border-color: rgb(255, 250, 205);
+      }
+
+      #making-inputs-inline input {
+        display: inline;
+      }
+
+      input#submit {
+        color: #000000;
+        text-shadow: 0px 1px 1px #ffffff;
+        border-bottom: 2px solid #b2b2b2;
+        background-color: rgb(255, 222, 173);
+        padding: 3px;
+      }
+
+      input#submit:hover {
+        color: #000000;
+        border: 1px solid #a4a4a4;
+        border-top: 2px solid #b2b2b2;
+        background-color: rgb(255, 240, 245);
+      }
+
+      input#reset {
+        color: #000000;
+        text-shadow: 0px 1px 1px #ffffff;
+        border-bottom: 2px solid #b2b2b2;
+        background-color: rgb(255, 222, 173);
+        padding: 3px;
+      }
+
+      input#reset:hover {
+        color: #000000;
+        border: 1px solid #a4a4a4;
+        border-top: 2px solid #b2b2b2;
+        background-color: rgb(255, 240, 245);
+      }
+
+      #order-form fieldset {
+        padding: 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      /*form*/
+      /*form error MSG*/
+      #errorMsgDiv {
+        position: fixed;
+        width: 500px;
+        left: 50%;
+        top: 0px;
+        margin-left: -253px;
+        display: none;
+        border: rgb(222, 184, 135) 5px ridge;
+        background-color: rgb(255, 255, 224);
+        box-shadow: 5px 5px 30px rgb(0, 0, 0);
+      }
+
+      #errorMsgList li {
+        list-style-type: none;
+        padding-left: 10px;
+        padding-top: 5px;
+      }
+
+      /*form error MSG*/

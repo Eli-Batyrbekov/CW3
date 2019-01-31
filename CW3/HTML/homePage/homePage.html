@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="cake, order, buy, Buccellator">
+  <meta name="description" content="order a cake here">
+  <link rel="stylesheet" type="text/css" href="../../css/universal.css">
+  <link rel="stylesheet" type="text/css" href="../../css/home.css">
+  <title>city's cake</title>
+  <script src="../../JS/cakemenu.js"></script>
+  <script type="text/javascript">
+    <!--
+    var MenuArray = initMenu(); //cakes menu array
+
+    /* SlideShow*/
+    var item = 0; //has to be delared before entering the changeImg function
+    function changeImg() {
+      var time = 3000; // Time Between Switch
+      var imageForSlides = document.getElementById('imageForSlides');
+      //changeImage
+      imageForSlides.src = MenuArray[item].imagefile;
+      //change alt
+      imageForSlides.alt = MenuArray[item].description;
+      //change title
+      imageForSlides.title = MenuArray[item].description;
+      //change header
+      document.getElementById('nutrition-information-header').innerHTML = MenuArray[item].description;
+      //changing percents
+      tds = document.querySelectorAll('tbody tr td:nth-child(2)');
+      for (var i = 0; i < MenuArray.length; i++) {
+        tds[i].innerHTML = MenuArray[item].nutrition[i].percentage;
+      }
+      //summation of percents
+      var sumOfPercent = MenuArray[item].nutrition[0].percentage + MenuArray[item].nutrition[1].percentage + MenuArray[item].nutrition[2].percentage + MenuArray[item].nutrition[3].percentage;
+      document.getElementById('sumOfPercent').innerHTML = sumOfPercent;
+      // Check If Index Is Under Max
+      if (item < MenuArray.length - 1) {
+        // Add 1 to Index
+        item++;
+      } else {
+        // Reset Back To O
+        item = 0;
+      }
+
+      // Run function every x seconds
+      setTimeout("changeImg()", time);
+    }
+    // Run function when page loads
+    window.onload = changeImg;
+    //End of SlideShow S
+
+    //Video Switch Script
+    var vidList = new Array("http://courses.cs.cityu.edu.hk/cs2204/chocolate.mp4", "http://courses.cs.cityu.edu.hk/cs2204/cakemaking-s.mp4");
+    var vidSrcInd = 1;
+
+    function switchVideo() {
+      var vidSource = document.getElementById("promVidSource");
+      var vidTag = document.getElementById("promotion-video-1");
+      vidTag.src = vidList[vidSrcInd];
+      if (vidSrcInd < vidList.length - 1) {
+        // Add 1 to Index
+        vidSrcInd++;
+      } else {
+        // Reset Back To O
+        vidSrcInd = 0;
+      }
+      vidTag.load();
+      vidTag.play();
+    }
+
+    // End of Video Switch Script
+    -->
+  </script>
+</head>
+
+<body>
+  <!--Header-->
+  <header class="header" id="header">
+
+    <div id="logo-and-header-text">
+
+      <img src="../../images/logo.png" alt="logo of city's cake" title="logo of city's cake">
+
+      <h1 class="header-text">city's cake</h1>
+
+    </div>
+
+  </header>
+  <!--Header-->
+
+  <!--Navigation-menu-->
+  <div class="navigation-menu" id="navigation-menu">
+    <img src="../../images/viewlist.png" alt="navigation menu" title="navigation menu">
+
+    <a href="../homePage/homePage.html" tabindex="1">Home</a>
+    <a href="../orderPage/orderPage.html" tabindex="2">Order</a>
+    <a href="../designPage/designPage.html" tabindex="3">About Us</a>
+    <a href="#" onclick="return false" tabindex="4">Terms of Use</a>
+
+  </div>
+
+  <div class="animation">
+    <img src="../../images/graphic-3699658_640.png" alt="cake">
+  </div>
+
+  <!--page-content-->
+  <div class="page-content" id="page-content">
+
+    <!--Video-->
+    <div class="vidDiv">
+      <video id="promotion-video-1" autoplay onended="switchVideo()">
+        <source id="promVidSource" src="http://courses.cs.cityu.edu.hk/cs2204/chocolate.mp4" type="video/mp4">
+      </video>
+    </div>
+    <!--Video-->
+
+    <!--Order Form-->
+    <div class="forms" id="order-information-form">
+
+      <form class="order-form" id="order-form" action="../orderPage/orderPage.html" method="get">
+
+        <fieldset>
+          <legend class="form-legend-align-center">Order Information</legend>
+
+          <p>
+            <label for="telephone-number" accesskey="n">Tel No.
+              <input type="number" name="telephone-number" class="textbox-align-right" id="telephone-number" tabindex="5" value="12345678">
+            </label>
+
+            <br />
+            <label for="pick-up-date" accesskey="p">Pick Up Date
+              <input type="text" name="pick-up-date" class="textbox-align-right" id="pick-up-date" tabindex="6" value="15/5/2024">
+            </label>
+            <div id="making-inputs-inline">
+              <br />
+              <input type="radio" name="delivery" id="delivery" value="delivery" tabindex="7">
+              <label for="delivery" accesskey="d">Delivery</label>
+              <input type="radio" name="delivery" id="pick-up" value="pick-up" tabindex="8" checked="checked">
+              <label for="pick-up" accesskey="u" class="second">Pick Up</label>
+          </p>
+
+    </div>
+
+    <p>
+      <input type="submit" id="submit" name="submit" value="Submit" tabindex="9" accesskey="s">
+      <input type="reset" id="reset" name="reset" value="Clear" tabindex="10" accesskey="c">
+
+    </p>
+
+    </fieldset>
+
+    </form>
+  </div>
+  <!--Order Form-->
+
+  <!--Nutrition Indormation-->
+  <div id="nutrition-information" class="nutrition-information">
+    <h1 class="nutrition-information-header" id="nutrition-information-header">Buccellator</h1>
+    <img id="imageForSlides" class="nutrition-information-image" src="" alt="image showing Buccellator cake" title="image showing Buccellator cake">
+    <div class="nutrition-information-table" id="nutrition-information-table">
+      <table>
+        <thead id="table">
+          <tr>
+            <td colspan="2" class="table-header-medium-size">Nutrition Information</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Amount per 100g</th>
+            <th>%</th>
+          </tr>
+          <tr>
+            <td>Carbohydrate</td>
+            <td id="CarbPercent">20</td>
+          </tr>
+          <tr>
+            <td>Protein</td>
+            <td id="ProtPercent">7</td>
+          </tr>
+          <tr>
+            <td>Fat</td>
+            <td id="FatPercent">25</td>
+          </tr>
+          <tr>
+            <td>Cholesterol</td>
+            <td id="CholPercent">0</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total may not add to 100%</td>
+            <td id="sumOfPercent">52</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <!--Nutrition Indormation-->
+
+  </div>
+  <!--page-content-->
+
+  <!--footer-->
+  <footer>
+    <hr>
+    <div class="references-text" id="references-text">
+      <p>&copy; CityU 2017 sources of images and text from Wikipedia
+        &amp; courtesy of all-free-download.com &amp; Pixaby.com</p>
+    </div>
+    <br />
+    <div class="footer-links" id="footer-links">
+      <a href="../homePage/homePage.html" tabindex="11">Home</a>
+      <a href="../orderPage/orderPage.html" tabindex="12">Order</a>
+      <a href="../designPage/designPage.html" tabindex="13">About Us</a>
+      <a href="#" onclick="return false" tabindex="14">Terms of Use</a>
+    </div>
+    <hr>
+  </footer>
+</body>
+
+</html>

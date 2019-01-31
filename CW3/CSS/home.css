@@ -1,0 +1,165 @@
+        /*Video*/
+        .vidDiv {
+          margin: auto;
+          width: 80%;
+        }
+
+        #promotion-video-1 {
+          width: 100%;
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+          border: rgb(222, 184, 135) 5px ridge;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        /*Video*/
+        /*form*/
+        #order-information-form {
+          margin: auto;
+          margin-top: 15px;
+          width: 400px;
+          border: rgb(222, 184, 135) 5px ridge;
+          background-color: rgb(255, 255, 224);
+          font-size: 120%;
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+        }
+
+        #order-form input {
+          font-size: 120%;
+          overflow: hidden;
+          display: block;
+          margin-bottom: 10px;
+          border: grey 1px solid;
+          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
+          padding-top: 5px;
+          margin-top: 5px;
+        }
+
+        .form-legend-align-center {
+          text-decoration: underline;
+          background-color: white;
+          border: 1px solid #dcdcdc;
+          border-radius: 0px 0px 10px 10px;
+          padding: 10px 20px;
+          align-self: center;
+        }
+
+        #order-form input:focus {
+          background-color: rgb(255, 240, 245);
+          border-color: rgb(255, 250, 205);
+        }
+
+        #making-inputs-inline input {
+          display: inline;
+        }
+
+        input#submit {
+          color: #000000;
+          text-shadow: 0px 1px 1px #ffffff;
+          border-bottom: 2px solid #b2b2b2;
+          background-color: rgb(255, 222, 173);
+          padding: 3px;
+        }
+
+        input#submit:hover {
+          color: #000000;
+          border: 1px solid #a4a4a4;
+          border-top: 2px solid #b2b2b2;
+          background-color: rgb(255, 240, 245);
+        }
+
+        input#reset {
+          color: #000000;
+          text-shadow: 0px 1px 1px #ffffff;
+          border-bottom: 2px solid #b2b2b2;
+          background-color: rgb(255, 222, 173);
+          padding: 3px;
+        }
+
+        input#reset:hover {
+          color: #000000;
+          border: 1px solid #a4a4a4;
+          border-top: 2px solid #b2b2b2;
+          background-color: rgb(255, 240, 245);
+        }
+
+        #order-form fieldset {
+          padding: 20px;
+          text-align: center;
+          align-items: center;
+        }
+
+        /*form*/
+        /*nutrition-information*/
+        .nutrition-information-image {
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+          border: rgb(222, 184, 135) 5px ridge;
+          margin-top: 30px;
+          margin-bottom: 5px;
+          width: 50%;
+          height: 25em;
+          float: left;
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+          margin-bottom: 50px;
+        }
+
+        #nutrition-information-table {
+          width: 40%;
+          float: left;
+          border: rgb(222, 184, 135) 5px ridge;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          background-color: rgb(255, 240, 245);
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+          float: right;
+        }
+
+        #nutrition-information-table table thead td {
+          background-color: rgb(222, 184, 135);
+          text-transform: uppercase;
+          border-top: solid black 1px;
+          border-bottom: solid black 1px;
+        }
+
+        #nutrition-information-table table {
+          padding: 0px;
+          border-spacing: 0px;
+          width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+
+        #nutrition-information-table table th {
+          background-color: rgb(255, 222, 173);
+        }
+
+        #nutrition-information-table tr:nth-child(even) {
+          background-color: rgb(249, 214, 226);
+        }
+
+        #nutrition-information-table tfoot {
+          background-color: rgb(255, 222, 173);
+        }
+
+        #nutrition-information-table td, th {
+          border-left: solid black 1px;
+          border-bottom: solid black 1px;
+        }
+
+        #nutrition-information-table tr:hover {
+          background-color: rgb(220, 220, 255);
+        }
+
+        /* hover selector https://www.w3schools.com/cssref/sel_hover.asp*/
+        #nutrition-information h1 {
+          text-align: center;
+          border: rgb(222, 184, 135) 5px ridge;
+          margin-top: 20px;
+          box-shadow: 5px 5px 30px rgb(0, 0, 0);
+          background-color: rgb(249, 214, 226);
+        }
+
+        /*nutrition-information*/
+        /*page-content*/

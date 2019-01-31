@@ -1,0 +1,78 @@
+#page-content {
+  margin: auto;
+  margin-top: 35px;
+  width: 80%;
+  border: rgb(222, 184, 135) 5px ridge;
+  background-color: rgb(255, 255, 224);
+  font-size: 120%;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+}
+
+#invoice-form legend {
+  text-decoration: underline;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 0px 0px 10px 10px;
+  padding: 10px 20px;
+  align-self: center;
+  margin: auto;
+}
+
+#invoice-formt input {
+  font-size: 120%;
+  overflow: hidden;
+  display: block;
+  margin-bottom: 10px;
+  border: grey 1px solid;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+  margin-top: 5px;
+}
+
+#tipoTable {
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 45px;
+  width: 400px;
+  border: rgb(222, 184, 135) 5px ridge;
+  background-color: rgb(255, 255, 224);
+  font-size: 120%;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+}
+
+#tipoTable td {
+  border: 1px solid black;
+}
+
+#invoice-form label {
+  text-align: center;
+}
+
+#invoice-form * {
+  display: block;
+  margin: auto;
+}
+
+#invoice-form {
+  margin: auto;
+  margin-top: 15px;
+  width: 400px;
+  border: rgb(222, 184, 135) 5px ridge;
+  background-color: rgb(255, 255, 224);
+  font-size: 120%;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+  align-items: center;
+}
+
+#clearInvBtn {
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  color: #000000;
+  text-shadow: 0px 1px 1px #ffffff;
+  border-bottom: 2px solid #b2b2b2;
+  background-color: rgb(255, 222, 173);
+  padding: 3px;
+}
