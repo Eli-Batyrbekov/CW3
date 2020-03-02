@@ -1,4 +1,4 @@
 # CW3
-a prototype of cake-shop
+cake-shop website build with pure JavaScript/HTML/CSS
 
 main page is in "CW3/HTML/homePage/homePage.html"
